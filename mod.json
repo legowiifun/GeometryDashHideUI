@@ -1,0 +1,32 @@
+{
+	"geode": "4.0.1",
+	"gd": {
+		"win": "2.2074"
+	},
+	"id": "legowiifun.hide_ui",
+	"name": "Hide UI",
+	"version": "v1.0.0",
+	"developer": "legowiifun",
+	"description": "Hides the game UI on a keypress.",
+	"dependencies": [
+		{
+			"id": "geode.custom-keybinds",
+			"version": ">=v1.10.1",
+			"importance": "required"
+		},
+		{
+			"id": "geode.node-ids",
+			"version": ">=v1.18.0",
+			"importance": "required"
+		}
+	],
+	"tags": [
+		"gameplay",
+		"offline",
+		"interface",
+		"utility"
+	],
+	"links": {
+		"source": "https://github.com/legowiifun/GeometryDashHideUI"
+	}
+}

@@ -1,0 +1,2 @@
+# HideUI
+Hides most UI labels on a keypress. If there is one that is not hidden, download https://geode-sdk.org/mods/geode.devtools, then press F11 while in a level (it also works while paused), and find where the UI element is. It will likely be somewhere under PlayLayer. Once you think you found it, click on attributes, check the visible checkbox, and see if it disappears. If it does, then share that on the github for this mod. 
