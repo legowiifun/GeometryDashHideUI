@@ -1,11 +1,12 @@
 {
-	"geode": "4.0.1",
+	"geode": "4.2.0",
 	"gd": {
-		"win": "2.2074"
+		"win": "2.2074",
+		"mac": "2.2074"
 	},
 	"id": "legowiifun.hide_ui",
 	"name": "Hide UI",
-	"version": "v1.0.0",
+	"version": "v1.1.0",
 	"developer": "legowiifun",
 	"description": "Hides the game UI on a keypress.",
 	"dependencies": [

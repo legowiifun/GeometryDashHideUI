@@ -4,7 +4,6 @@
 #include <Geode/Geode.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include <Geode/modify/PlayLayer.hpp>
-#include <Geode/modify/GameManager.hpp>
 #include <Geode/modify/CCNode.hpp>
 /**
  * Brings cocos2d and all Geode namespaces to the current scope.
@@ -21,139 +20,142 @@ $execute{
 		"Play/UI"
 	});
 }
-
-// define the modified gameManager, as it is needed for hideUILayer, and hideUILayer is needed for it
-class $modify(HideUIGM, GameManager) {
+bool isHidden = false;
+class $modify(hidableNode,CCNode) {
 	struct Fields {
-		bool isActive = false;
+		bool isUI=false;
+		// 2 for hidden
+		// 1 for not hidden
+		int hideNode = 0;
 	};
-	void hideNode(std::string name, int id);
-	void update(float p0);
+	// if the node is having its visibility set, check a couple things first
+	virtual void setVisible(bool visible) {
+		if (isHidden && m_fields->isUI) {
+			CCNode::setVisible(false);
+		}
+		else {
+			if (visible) {
+				m_fields->hideNode = 1;
+			}
+			else {
+				m_fields->hideNode = 2;
+			}
+			CCNode::setVisible(visible);
+			
+		}
+	}
 };
 
 class $modify(hideUILayer, PlayLayer) {
-	struct Fields {
-		// tracks the current state
-		bool isHidden;
-		// tracks which nodes are initially visible, so ones that are invisible stay invisible
-		bool isVisisble[16];
-	};
-	// hide nodes easily
-	void hideNode(std::string name, int id) {
-		CCNode* node = getChildByID(name);
+	// set the visibility of nodes
+	void hideNode(const char* name) {
+		// get the node with the given ID
+		hidableNode* node = (hidableNode*)getChildByID(name);
 		if (node == nullptr) {
 			return;
 		}
-		if ((m_fields->isHidden) == true && (m_fields->isVisisble[id]==true)) {
+		// if the node has not been hidden before, 
+		if (node->m_fields->hideNode == 0) {
+			// determine whether it is visible by default
+			bool visible = node->isVisible();
+			if (visible) {
+				node->m_fields->hideNode = 1;
+			}
+			else {
+				node->m_fields->hideNode = 2;
+			}
+			node->setVisible(visible);
+		}
+		// otherwise, use known values
+		else if (node->m_fields->hideNode == 1) {
 			node->setVisible(true);
 		}
 		else {
 			node->setVisible(false);
 		}
 	}
-	// set whether a node starts invisible or not
-	void setStatus(std::string name, int id) {
-		CCNode* node = getChildByID(name);
+	// mark a node as a member of the UI to be hidden
+	void markAsUI(const char* name) {
+		hidableNode* node = (hidableNode*)getChildByID(name);
 		if (node == nullptr) {
 			return;
 		}
-		m_fields->isVisisble[id] = node->isVisible();
+		node->m_fields->isUI = true;
 	}
-	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) {
-		// set elements as hidden, so they automatically get unhidden
-		m_fields->isHidden = true;
-
-		// run the original playLayer::init
+	bool init(GJGameLevel * level, bool useReplay, bool dontCreateObjects) {
 		if (!PlayLayer::init(level, useReplay, dontCreateObjects)) {
 			return false;
 		}
-		return true;
-	}
-	void startGame() {
-		PlayLayer::startGame();
-
-		// set initial node statuses
-		// mod interfaces
-		// globed
-		setStatus("dankmeme.globed2/game-overlay", 0);
-
-		// platformer ghosts
-		setStatus("zilko.platformer_ghosts/ghost_ui", 1);
-		m_fields->isVisisble[2] = true;
-		m_fields->isVisisble[3] = true;
-
-		// RunInfo
-		setStatus("mat.run-info/RunInfoWidget", 4);
-
-		// GDH
-		setStatus("tobyadd.gdh/labels_top_left", 5);
-		setStatus("tobyadd.gdh/labels_top_right", 6);
-		setStatus("tobyadd.gdh/labels_bottom_left", 7);
-		setStatus("tobyadd.gdh/labels_bottom_right", 8);
-		setStatus("tobyadd.gdh/labels_top", 9);
-		setStatus("tobyadd.gdh/labels_bottom", 10);
-
-
-		// default (robtop) interfaces
-		// also covers some other mods (megahack, stat display, etc.)
-		setStatus("progress-bar", 11);
-		setStatus("percentage-label", 12);
-		setStatus("UILayer", 13);
-		setStatus("debug-text", 14);
-		setStatus("time-label", 15);
-		
-		// now that everything is ready, trigger the update method
-		((HideUIGM*)GameManager::get())->m_fields->isActive = true;
-
 		// add the keybind event
 		this->template addEventListener<keybinds::InvokeBindFilter>([=](keybinds::InvokeBindEvent* event) {
 			if (event->isDown()) {
 				// switch the isHidden value
-				m_fields->isHidden = !(m_fields->isHidden);
+				isHidden = !(isHidden);
+
+				// mod interfaces
+				// globed
+				hideNode("dankmeme.globed2/game-overlay");
+
+				// platformer ghosts
+				hideNode("zilko.platformer_ghosts/ghost_ui");
+				hideNode("zilko.platformer_ghosts/player-icon1");
+				hideNode("zilko.platformer_ghosts/player-icon2");
+
+				// RunInfo
+				hideNode("mat.run-info/RunInfoWidget");
+
+				// GDH
+				hideNode("tobyadd.gdh/labels_top_left");
+				hideNode("tobyadd.gdh/labels_top_right");
+				hideNode("tobyadd.gdh/labels_bottom_left");
+				hideNode("tobyadd.gdh/labels_bottom_right");
+				hideNode("tobyadd.gdh/labels_top");
+				hideNode("tobyadd.gdh/labels_bottom");
+
+				// default (robtop) interfaces
+				// also covers some other mods (megahack, stat display, etc.)
+				hideNode("progress-bar");
+				hideNode("percentage-label");
+				hideNode("UILayer");
+				hideNode("debug-text");
+				hideNode("time-label");
 			}
 			return ListenerResult::Propagate;
 			}, "hideUI"_spr);
+		return true;
 	}
-	void onExit() {
-		// reset the update method activation when you exit a level
-		((HideUIGM*)GameManager::get())->m_fields->isActive = false;
-		PlayLayer::onExit();
-	}
-};
+	// hook the startGame method
+	void startGame() {
+		PlayLayer::startGame();
 
-void HideUIGM::hideNode(std::string name, int id) {
-	hideUILayer* pl = (hideUILayer*)getPlayLayer();
-	pl->hideNode(name,id);
-}
-void HideUIGM::update(float p0) {
-	if (m_fields->isActive) {
+		// mark nodes as UI nodes
 		// mod interfaces
 		// globed
-		hideNode("dankmeme.globed2/game-overlay", 0);
+		markAsUI("dankmeme.globed2/game-overlay");
 
 		// platformer ghosts
-		hideNode("zilko.platformer_ghosts/ghost_ui", 1);
-		hideNode("zilko.platformer_ghosts/player-icon1", 2);
-		hideNode("zilko.platformer_ghosts/player-icon2", 3);
+		markAsUI("zilko.platformer_ghosts/ghost_ui");
+		markAsUI("zilko.platformer_ghosts/player-icon1");
+		markAsUI("zilko.platformer_ghosts/player-icon2");
 
 		// RunInfo
-		hideNode("mat.run-info/RunInfoWidget", 4);
+		markAsUI("mat.run-info/RunInfoWidget");
 
 		// GDH
-		hideNode("tobyadd.gdh/labels_top_left", 5);
-		hideNode("tobyadd.gdh/labels_top_right", 6);
-		hideNode("tobyadd.gdh/labels_bottom_left", 7);
-		hideNode("tobyadd.gdh/labels_bottom_right", 8);
-		hideNode("tobyadd.gdh/labels_top", 9);
-		hideNode("tobyadd.gdh/labels_bottom", 10);
+		markAsUI("tobyadd.gdh/labels_top_left");
+		markAsUI("tobyadd.gdh/labels_top_right");
+		markAsUI("tobyadd.gdh/labels_bottom_left");
+		markAsUI("tobyadd.gdh/labels_bottom_right");
+		markAsUI("tobyadd.gdh/labels_top");
+		markAsUI("tobyadd.gdh/labels_bottom");
+
 
 		// default (robtop) interfaces
 		// also covers some other mods (megahack, stat display, etc.)
-		hideNode("progress-bar", 11);
-		hideNode("percentage-label", 12);
-		hideNode("UILayer", 13);
-		hideNode("debug-text", 14);
-		hideNode("time-label", 15);
+		markAsUI("progress-bar");
+		markAsUI("percentage-label");
+		markAsUI("UILayer");
+		markAsUI("debug-text");
+		markAsUI("time-label");
 	}
-	GameManager::update(p0);
-}
+};
