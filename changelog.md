@@ -1,3 +1,7 @@
+# 1.1.1
+- Refactoring
+- Add support for the ghosts in Platformer Ghosts and Speedrun Timer
+- Added a shift modifier to the default keybind
 # 1.1.0
 - Complete Rewrite
 - Multiple bugfixes

@@ -15,7 +15,7 @@ $execute{
 		"hideUI"_spr,
 		"Hide the user interface",
 		"",
-		{keybinds::Keybind::create(KEY_H)},
+		{keybinds::Keybind::create(KEY_H, keybinds::Modifier::Shift)},
 		"Play/UI"
 	});
 }

@@ -4,7 +4,6 @@
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include <Geode/modify/CCNode.hpp>
 
-#include "hideUILayer.cpp"
 #include "../main.cpp"
 
 /**

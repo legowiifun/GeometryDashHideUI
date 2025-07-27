@@ -3,7 +3,6 @@
 #include <Geode/Geode.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include <Geode/modify/PlayLayer.hpp>
-#include <dankmeme.globed2/include/player.hpp>
 
 #include "hidableNode.cpp"
 #include "../main.cpp"
@@ -95,21 +94,14 @@ class $modify(hideUILayer, PlayLayer) {
 				// mod interfaces
 				// globed
 				hideNode("dankmeme.globed2/game-overlay");
-				// will this work?
-		/*		int i = 0;
-				PlayerObject* child = getChildByType<PlayerObject*>(0);
-				while (child != nullptr) {
-					if (globed::player::isGlobedPlayer(child)) {
-						hideNode(child);
-					}
-					i++;
-					child = getChildByType<PlayerObject*>(i);
-				}*/
 
 				// platformer ghosts
 				hideNode("zilko.platformer_ghosts/ghost_ui");
 				hideNode("zilko.platformer_ghosts/player-icon1");
 				hideNode("zilko.platformer_ghosts/player-icon2");
+				// The Ghosts themselves
+				hideNode(getChildByIDRecursive("zilko.platformer_ghosts/ghost-player1"));
+				hideNode(getChildByIDRecursive("zilko.platformer_ghosts/ghost-player2"));
 
 				// RunInfo
 				hideNode("mat.run-info/RunInfoWidget");
@@ -121,6 +113,9 @@ class $modify(hideUILayer, PlayLayer) {
 				hideNode("tobyadd.gdh/labels_bottom_right");
 				hideNode("tobyadd.gdh/labels_top");
 				hideNode("tobyadd.gdh/labels_bottom");
+				
+				// Speedrun Timer
+				hideNode("cheeseworks.speedruntimer/timer");
 
 				// default (robtop) interfaces
 				// also covers some other mods (megahack, stat display, etc.)
@@ -142,21 +137,14 @@ class $modify(hideUILayer, PlayLayer) {
 		// mod interfaces
 		// globed
 		markAsUI("dankmeme.globed2/game-overlay");
-		// will this work?
-		/*int i = 0;
-		PlayerObject* child = getChildByType<PlayerObject*>(0);
-		while (child != nullptr) {
-			if (globed::player::isGlobedPlayer(child)) {
-				markAsUI(child);
-			}
-			i++;
-			child = getChildByType<PlayerObject*>(i);
-		}*/
 
 		// platformer ghosts
 		markAsUI("zilko.platformer_ghosts/ghost_ui");
 		markAsUI("zilko.platformer_ghosts/player-icon1");
 		markAsUI("zilko.platformer_ghosts/player-icon2");
+		// The Ghosts themselves
+		markAsUI(getChildByIDRecursive("zilko.platformer_ghosts/ghost-player1"));
+		markAsUI(getChildByIDRecursive("zilko.platformer_ghosts/ghost-player2"));
 
 		// RunInfo
 		markAsUI("mat.run-info/RunInfoWidget");
@@ -169,6 +157,8 @@ class $modify(hideUILayer, PlayLayer) {
 		markAsUI("tobyadd.gdh/labels_top");
 		markAsUI("tobyadd.gdh/labels_bottom");
 
+		// Speedrun Timer
+		markAsUI("cheeseworks.speedruntimer/timer");
 
 		// default (robtop) interfaces
 		// also covers some other mods (megahack, stat display, etc.)
