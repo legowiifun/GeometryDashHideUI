@@ -4,6 +4,6 @@ If there is one that is not hidden, download https://geode-sdk.org/mods/geode.de
 
 If you are making a mod that modifies the UI, and you want it to automatically be hidden when this mod is activated without me needing to update it, place your new UI elements in the UILayer.
 
-This mod is known not to work with: the players in Globed, Prism Menu's UI elements, Friends!, and a couple UI elements in the main levels (this is a bug on Node ID's end, they work fine in custom levels). Most of the ones listed here are because the mod developers did not add Node IDs to there custom nodes. 
+This mod is known not to work with: the players in Globed, Prism Menu's UI elements, Friends!, and a couple UI elements in the main levels (this is a bug on Node ID's end, they work fine in custom levels). Most of the ones listed here are because the mod developers did not add node ids to their custom nodes. 
 
 Some mods that this mod is guarenteed to work with: Megahack, Stat Display, the progress bar and ping labels of Globed, PlatformerGhosts, channelViewer, QOLMod, RunInfo, Eclipse, Speedrun Timer, Servers Status, and GDH.
