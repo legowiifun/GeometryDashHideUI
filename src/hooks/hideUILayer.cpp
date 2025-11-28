@@ -117,6 +117,14 @@ class $modify(hideUILayer, PlayLayer) {
 				// Speedrun Timer
 				hideNode("cheeseworks.speedruntimer/timer");
 
+
+				// Friends!
+				// PetLayer
+				hideNode(getParent()->getChildByID("Petlayer"));
+
+				// Status Monitor
+				hideNode(getParent()->getChildByID("status-monitor"));
+
 				// default (robtop) interfaces
 				// also covers some other mods (megahack, stat display, etc.)
 				hideNode("progress-bar");
@@ -124,6 +132,7 @@ class $modify(hideUILayer, PlayLayer) {
 				hideNode("UILayer");
 				hideNode("debug-text");
 				hideNode("time-label");
+
 			}
 			return ListenerResult::Propagate;
 			}, "hideUI"_spr);
@@ -159,6 +168,13 @@ class $modify(hideUILayer, PlayLayer) {
 
 		// Speedrun Timer
 		markAsUI("cheeseworks.speedruntimer/timer");
+
+		// Friends!
+		// PetLayer
+		markAsUI(getParent()->getChildByID("Petlayer"));
+
+		// Status Monitor
+		markAsUI(getParent()->getChildByID("status-monitor"));
 
 		// default (robtop) interfaces
 		// also covers some other mods (megahack, stat display, etc.)
