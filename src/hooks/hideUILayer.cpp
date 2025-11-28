@@ -120,7 +120,8 @@ class $modify(hideUILayer, PlayLayer) {
 
 				// Friends!
 				// PetLayer
-				hideNode(getParent()->getChildByID("Petlayer"));
+				// does not work
+				//hideNode(getParent()->getChildByID("Petlayer"));
 
 				// Status Monitor
 				hideNode(getParent()->getChildByID("status-monitor"));
@@ -171,7 +172,8 @@ class $modify(hideUILayer, PlayLayer) {
 
 		// Friends!
 		// PetLayer
-		markAsUI(getParent()->getChildByID("Petlayer"));
+		// does not work
+		//markAsUI(getParent()->getChildByID("Petlayer"));
 
 		// Status Monitor
 		markAsUI(getParent()->getChildByID("status-monitor"));
