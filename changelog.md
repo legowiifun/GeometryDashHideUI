@@ -1,3 +1,5 @@
+# 1.1.2
+- Add support for Servers Status
 # 1.1.1
 - Refactoring
 - Add support for the ghosts in Platformer Ghosts and Speedrun Timer

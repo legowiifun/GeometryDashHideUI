@@ -6,11 +6,11 @@
 	},
 	"id": "legowiifun.hide_ui",
 	"name": "Hide UI",
-	"version": "v1.1.1",
+	"version": "v1.1.2",
 	"developer": "legowiifun",
 	"description": "Hides the game UI on a keypress.",
 	"dependencies": {
-  		"geode.custom-keybinds": ">=v1.10.4",
+  		"geode.custom-keybinds": ">=v1.11.0",
   		"geode.node-ids": ">=v1.21.1"
  	},
 	"tags": [
