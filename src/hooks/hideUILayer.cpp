@@ -1,20 +1,7 @@
-#pragma once
+#include "hideUILayer.hpp"
 
-#include <Geode/Geode.hpp>
-#include <geode.custom-keybinds/include/Keybinds.hpp>
-#include <Geode/modify/PlayLayer.hpp>
-
-#include "hidableNode.cpp"
-#include "../main.cpp"
-
-/**
- * Brings cocos2d and all Geode namespaces to the current scope.
- */
-using namespace geode::prelude;
-
-class $modify(hideUILayer, PlayLayer) {
 	// set the visibility of nodes
-	void hideNode(const char* name) {
+	void hideUILayer::hideNode(const char* name) {
 		// get the node with the given ID
 		hidableNode* node = (hidableNode*)getChildByID(name);
 		if (node == nullptr) {
@@ -40,7 +27,7 @@ class $modify(hideUILayer, PlayLayer) {
 			node->setVisible(false);
 		}
 	}
-	void hideNode(CCNode * n) {
+	void hideUILayer::hideNode(CCNode * n) {
 		// get the node as a hidableNode
 		hidableNode* node = (hidableNode*)n;
 		if (node == nullptr) {
@@ -67,21 +54,21 @@ class $modify(hideUILayer, PlayLayer) {
 		}
 	}
 	// mark a node as a member of the UI to be hidden
-	void markAsUI(const char* name) {
+	void hideUILayer::markAsUI(const char* name) {
 		hidableNode* node = (hidableNode*)getChildByID(name);
 		if (node == nullptr) {
 			return;
 		}
 		node->m_fields->isUI = true;
 	}
-	void markAsUI(CCNode * n) {
+	void hideUILayer::markAsUI(CCNode * n) {
 		hidableNode* node = (hidableNode*)n;
 		if (node == nullptr) {
 			return;
 		}
 		node->m_fields->isUI = true;
 	}
-	bool init(GJGameLevel * level, bool useReplay, bool dontCreateObjects) {
+	bool hideUILayer::init(GJGameLevel * level, bool useReplay, bool dontCreateObjects) {
 		if (!PlayLayer::init(level, useReplay, dontCreateObjects)) {
 			return false;
 		}
@@ -140,7 +127,7 @@ class $modify(hideUILayer, PlayLayer) {
 		return true;
 	}
 	// hook the startGame method
-	void startGame() {
+	void hideUILayer::startGame() {
 		PlayLayer::startGame();
 
 		// mark nodes as UI nodes
@@ -186,4 +173,3 @@ class $modify(hideUILayer, PlayLayer) {
 		markAsUI("debug-text");
 		markAsUI("time-label");
 	}
-};

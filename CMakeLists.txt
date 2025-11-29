@@ -9,7 +9,10 @@ project(HideUI VERSION 1.1.1)
 # Set up the mod binary
 add_library(${PROJECT_NAME} SHARED
     # Add any extra C++ source files here
- "src/hooks/hideUILayer.cpp")
+ "src/hooks/hideUILayer.cpp"
+ "src/main.cpp"
+ "src/hooks/hidableNode.cpp"
+ )
 
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")
