@@ -4,7 +4,7 @@
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include <Geode/modify/CCNode.hpp>
 
-#include "../main.cpp"
+#include "../main.hpp"
 
 /**
  * Brings cocos2d and all Geode namespaces to the current scope.

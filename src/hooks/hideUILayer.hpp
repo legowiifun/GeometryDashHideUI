@@ -5,7 +5,7 @@
 #include <Geode/modify/PlayLayer.hpp>
 
 #include "hidableNode.hpp"
-#include "../main.cpp"
+#include "../main.hpp"
 
 /**
  * Brings cocos2d and all Geode namespaces to the current scope.

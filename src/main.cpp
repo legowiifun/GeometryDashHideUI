@@ -8,4 +8,4 @@ $execute{
 		{keybinds::Keybind::create(KEY_H, keybinds::Modifier::Shift)},
 		"Play/UI"
 	});
-};
+}
