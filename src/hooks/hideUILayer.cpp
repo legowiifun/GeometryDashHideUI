@@ -114,7 +114,7 @@
 				hideNode(getParent()->getChildByID("status-monitor"));
 
 				// default (robtop) interfaces
-				// also covers some other mods (megahack, stat display, etc.)
+				// also covers some other mods (stat display, etc.)
 				hideNode("progress-bar");
 				hideNode("percentage-label");
 				hideNode("UILayer");
@@ -166,7 +166,7 @@
 		markAsUI(getParent()->getChildByID("status-monitor"));
 
 		// default (robtop) interfaces
-		// also covers some other mods (megahack, stat display, etc.)
+		// also covers some other mods (stat display, etc.)
 		markAsUI("progress-bar");
 		markAsUI("percentage-label");
 		markAsUI("UILayer");
