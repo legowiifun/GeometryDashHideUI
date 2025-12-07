@@ -1,5 +1,5 @@
 #include "hideUILayer.hpp"
-
+#include "../main.hpp"
 	// set the visibility of nodes
 	void hideUILayer::hideNode(const char* name) {
 		// get the node with the given ID
@@ -78,49 +78,18 @@
 				// switch the isHidden value
 				isHidden = !(isHidden);
 
-				// mod interfaces
-				// globed
-				hideNode("dankmeme.globed2/game-overlay");
-
-				// platformer ghosts
-				hideNode("zilko.platformer_ghosts/ghost_ui");
-				hideNode("zilko.platformer_ghosts/player-icon1");
-				hideNode("zilko.platformer_ghosts/player-icon2");
-				// The Ghosts themselves
-				hideNode(getChildByIDRecursive("zilko.platformer_ghosts/ghost-player1"));
-				hideNode(getChildByIDRecursive("zilko.platformer_ghosts/ghost-player2"));
-
-				// RunInfo
-				hideNode("mat.run-info/RunInfoWidget");
-
-				// GDH
-				hideNode("tobyadd.gdh/labels_top_left");
-				hideNode("tobyadd.gdh/labels_top_right");
-				hideNode("tobyadd.gdh/labels_bottom_left");
-				hideNode("tobyadd.gdh/labels_bottom_right");
-				hideNode("tobyadd.gdh/labels_top");
-				hideNode("tobyadd.gdh/labels_bottom");
-				
-				// Speedrun Timer
-				hideNode("cheeseworks.speedruntimer/timer");
-
-
-				// Friends!
-				// PetLayer
-				// does not work
-				//hideNode(getParent()->getChildByID("Petlayer"));
-
-				// Status Monitor
-				hideNode(getParent()->getChildByID("status-monitor"));
-
-				// default (robtop) interfaces
-				// also covers some other mods (stat display, etc.)
-				hideNode("progress-bar");
-				hideNode("percentage-label");
-				hideNode("UILayer");
-				hideNode("debug-text");
-				hideNode("time-label");
-
+				//go through each element
+				LinkedListNode* current=head;
+				while (current!=nullptr) {
+					if (current->getIsNested()==0) {
+						hideNode(current->getData().c_str());
+					} else if (current->getIsNested()==1) {
+						hideNode(getParent()->getChildByID(current->getData()));
+					} else if (current->getIsNested()==-1) {
+						hideNode(getChildByIDRecursive(current->getData()));
+					}
+					current=current->getNext();
+				}
 			}
 			return ListenerResult::Propagate;
 			}, "hideUI"_spr);
@@ -131,45 +100,16 @@
 		PlayLayer::startGame();
 
 		// mark nodes as UI nodes
-		// mod interfaces
-		// globed
-		markAsUI("dankmeme.globed2/game-overlay");
-
-		// platformer ghosts
-		markAsUI("zilko.platformer_ghosts/ghost_ui");
-		markAsUI("zilko.platformer_ghosts/player-icon1");
-		markAsUI("zilko.platformer_ghosts/player-icon2");
-		// The Ghosts themselves
-		markAsUI(getChildByIDRecursive("zilko.platformer_ghosts/ghost-player1"));
-		markAsUI(getChildByIDRecursive("zilko.platformer_ghosts/ghost-player2"));
-
-		// RunInfo
-		markAsUI("mat.run-info/RunInfoWidget");
-
-		// GDH
-		markAsUI("tobyadd.gdh/labels_top_left");
-		markAsUI("tobyadd.gdh/labels_top_right");
-		markAsUI("tobyadd.gdh/labels_bottom_left");
-		markAsUI("tobyadd.gdh/labels_bottom_right");
-		markAsUI("tobyadd.gdh/labels_top");
-		markAsUI("tobyadd.gdh/labels_bottom");
-
-		// Speedrun Timer
-		markAsUI("cheeseworks.speedruntimer/timer");
-
-		// Friends!
-		// PetLayer
-		// does not work
-		//markAsUI(getParent()->getChildByID("Petlayer"));
-
-		// Status Monitor
-		markAsUI(getParent()->getChildByID("status-monitor"));
-
-		// default (robtop) interfaces
-		// also covers some other mods (stat display, etc.)
-		markAsUI("progress-bar");
-		markAsUI("percentage-label");
-		markAsUI("UILayer");
-		markAsUI("debug-text");
-		markAsUI("time-label");
+		//go through each element
+		LinkedListNode* current=head;
+		while (current!=nullptr) {
+			if (current->getIsNested()==0) {
+				markAsUI(current->getData().c_str());
+			} else if (current->getIsNested()==1) {
+				markAsUI(getParent()->getChildByID(current->getData()));
+			} else if (current->getIsNested()==-1) {
+				markAsUI(getChildByIDRecursive(current->getData()));
+			}
+			current=current->getNext();
+		}
 	}

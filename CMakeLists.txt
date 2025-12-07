@@ -12,6 +12,7 @@ add_library(${PROJECT_NAME} SHARED
  "src/hooks/hideUILayer.cpp"
  "src/main.cpp"
  "src/hooks/hidableNode.cpp"
+ "src/LinkedListImpl/Node.cpp"
  )
 
 if (NOT DEFINED ENV{GEODE_SDK})
