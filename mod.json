@@ -19,6 +19,14 @@
 		"interface",
 		"utility"
 	],
+	"settings": {
+		"auto-hide": {
+			"type":"bool",
+			"name":"Auto-hide",
+			"description": "Hide the UI when you start. You will then have to manually re-enable it",
+			"default":false
+		}
+	},
 	"links": {
 		"source": "https://github.com/legowiifun/GeometryDashHideUI"
 	}
