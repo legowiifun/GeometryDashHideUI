@@ -33,7 +33,7 @@ LinkedListNode* LinkedListNode::get(int i) {
 std::string LinkedListNode::getData() {
     return data;
 }
-boolean LinkedListNode::strExists(std::string info) {
+bool LinkedListNode::strExists(std::string info) {
     // if it is in this node, return true
     if (data==info) {
         return true;

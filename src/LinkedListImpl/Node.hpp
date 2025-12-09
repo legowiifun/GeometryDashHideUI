@@ -45,7 +45,7 @@ class LinkedListNode {
          * Check if the data exists inside the entire list
          * Return true if the data exists, false if it does not
          */
-        boolean strExists(std::string info);
+        bool strExists(std::string info);
         /**
          * Get the nested status
          */
