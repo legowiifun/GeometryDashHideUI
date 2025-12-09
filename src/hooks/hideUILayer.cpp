@@ -115,9 +115,6 @@
 	void hideUILayer::startGame() {
 		PlayLayer::startGame();
 		markNodesAsUI();
-		if (Mod::get()->getSettingValue<bool>("auto-hide")) {
-			// switch the isHidden value
-			isHidden = !(isHidden);
-			hideNodes();
-		}
+		isHidden = Mod::get()->getSettingValue<bool>("auto-hide");
+		hideNodes();
 	}
