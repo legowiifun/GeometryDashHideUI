@@ -16,8 +16,8 @@ class LinkedListNode {
         /**
          * If the node is nested
          * 0 for not nested
-         * 1 for nested
-         * -1 for sibling/nested in sibling
+         * -1 for nested
+         * 1 for sibling/nested in sibling
          */
         int isNested;
     public:

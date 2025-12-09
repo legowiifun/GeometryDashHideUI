@@ -1,6 +1,22 @@
 #include "main.hpp"
-// register keybind
+
+//dispatch events
+void addUIEvent(std::string nodeID, std::string location) {
+	//prevent duplicates
+	if (head->strExists(nodeID)) {
+		return;
+	}
+	if (location=="PlayLayer") {
+		head->addToEnd(new LinkedListNode(nodeID, 0));
+	} else if (location=="Nested") {
+		head->addToEnd(new LinkedListNode(nodeID, -1));
+	} else if (location=="Sibling") {
+		head->addToEnd(new LinkedListNode(nodeID, 1));
+	}
+}
+
 $execute{
+	// register keybind
 	keybinds::BindManager::get()->registerBindable({
 		"hideUI"_spr,
 		"Hide the user interface",
@@ -8,6 +24,12 @@ $execute{
 		{keybinds::Keybind::create(KEY_H, keybinds::Modifier::Shift)},
 		"Play/UI"
 	});
+	
+	// dispatch event
+	new EventListener(+[](std::string nodeID, std::string location) {
+		addUIEvent(nodeID, location);
+		return ListenerResult::Stop;
+	}, ToFilter<EventAddUI>("legowiifun.hide_ui/addUI"));
 }
 $on_mod(Loaded) {
 	// globed
@@ -17,8 +39,8 @@ $on_mod(Loaded) {
 	head->addToEnd(new LinkedListNode("zilko.platformer_ghosts/player-icon1", 0));
 	head->addToEnd(new LinkedListNode("zilko.platformer_ghosts/player-icon2", 0));
 	// The Ghosts themselves
-	head->addToEnd(new LinkedListNode("zilko.platformer_ghosts/ghost-player1", 1));
-	head->addToEnd(new LinkedListNode("zilko.platformer_ghosts/ghost-player2", 1));
+	head->addToEnd(new LinkedListNode("zilko.platformer_ghosts/ghost-player1", -1));
+	head->addToEnd(new LinkedListNode("zilko.platformer_ghosts/ghost-player2", -1));
 
 	// RunInfo
 	head->addToEnd(new LinkedListNode("mat.run-info/RunInfoWidget", 0));
@@ -38,7 +60,7 @@ $on_mod(Loaded) {
 	// Friends!
 	// PetLayer
 	// does not work
-	//head->addToEnd(new LinkedListNode("Petlayer", -1));
+	//head->addToEnd(new LinkedListNode("Petlayer", 1));
 
 	// Status Monitor
 	head->addToEnd(new LinkedListNode("status-monitor", 1));
