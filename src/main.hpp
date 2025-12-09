@@ -18,7 +18,7 @@ inline LinkedListNode* head = nullptr;
 
 //set up for dispatch events API
 // set up filter for dispatch event
-using EventAddUI = geode::DispatchEvent<std::string, int>;
+using EventAddUI = geode::DispatchEvent<std::string, std::string>;
 template <class>
 struct ToFilterImpl;
 
