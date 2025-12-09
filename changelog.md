@@ -1,3 +1,7 @@
+# 1.2.0
+- Major Refactoring
+- Add an API for hiding the UI
+- Add a dispatch-events based API for adding new UI elements
 # 1.1.2
 - Add support for Servers Status
 # 1.1.1
