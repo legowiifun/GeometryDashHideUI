@@ -18,7 +18,11 @@ Finally, in the method itself, where you want to use the API, put
 ```
 hideUIAPI::toggleUI();
 ```
-This will toggle the UI when the method call is reached. You can check the visible properties of the various affected nodes if you specifically need them toggled on or off
+This will toggle the UI when the method call is reached. There are also methods to turn it on or off no matter what. 
+```
+hideUIAPI::turnOffUI();
+hideUIAPI::turnOnUI();
+```
 
 If you are a mod developer adding an object to the UI, and you want it to be automatically hidden, there are two approaches. First, you can put it in UILayer. This is automatically hidden. There is also a dispatch-events based API you can use. At the top of your file, put 
 ```

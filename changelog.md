@@ -1,3 +1,7 @@
+# 1.3.0
+- Updates to the API
+- Custom Keybinds is no longer required to use the API, only to use the mod without the API
+- Cross-platform API support
 # 1.2.0
 - Major Refactoring
 - Add an API for hiding the UI

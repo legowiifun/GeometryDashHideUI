@@ -2,15 +2,20 @@
 	"geode": "4.10.0",
 	"gd": {
 		"win": "2.2074",
-		"mac": "2.2074"
+		"mac": "2.2074",
+		"android": "2.2074",
+		"ios": "2.2074"
 	},
 	"id": "legowiifun.hide_ui",
 	"name": "Hide UI",
-	"version": "v1.2.0",
+	"version": "v1.3.0",
 	"developer": "legowiifun",
 	"description": "Hides the game UI on a keypress.",
 	"dependencies": {
-  		"geode.custom-keybinds": ">=v1.11.0",
+  		"geode.custom-keybinds": {
+			"version": ">=v1.11.0",
+			"importance": "recommended"
+		},
   		"geode.node-ids": ">=v1.21.1"
  	},
 	"tags": [

@@ -17,13 +17,22 @@ void addUIEvent(std::string nodeID, std::string location) {
 
 $execute{
 	// register keybind
-	keybinds::BindManager::get()->registerBindable({
+	/*keybinds::BindManager::get()->registerBindable({
 		"hideUI"_spr,
 		"Hide the user interface",
 		"",
 		{keybinds::Keybind::create(KEY_H, keybinds::Modifier::Shift)},
 		"Play/UI"
-	});
+	});*/
+	(void)[&]()->Result<> {
+		GEODE_UNWRAP(BindManagerV2::registerBindable(GEODE_UNWRAP(BindableActionV2::create(
+			"hideUI"_spr,
+			"Hide the user interface",
+			"",
+			{ GEODE_UNWRAP(KeybindV2::create(KEY_H, ModifierV2::Shift)) },
+			GEODE_UNWRAP(CategoryV2::create("Play/UI"))
+		))));
+	}();
 	
 	// dispatch event
 	new EventListener(+[](std::string nodeID, std::string location) {

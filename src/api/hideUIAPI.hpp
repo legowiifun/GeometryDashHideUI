@@ -12,4 +12,6 @@
 class HIDE_UI_API_DLL hideUIAPI {
     public:
         static void toggleUI();
+        static void turnOffUI();
+        static void turnOnUI();
 };

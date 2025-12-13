@@ -3,7 +3,7 @@
  * Include the Geode headers.
  */
 #include <Geode/Geode.hpp>
-#include <geode.custom-keybinds/include/Keybinds.hpp>
+#include <geode.custom-keybinds/include/OptionalAPI.hpp>
 #include "LinkedListImpl/Node.hpp"
 #include <Geode/loader/Dispatch.hpp>
 #include <Geode/loader/Event.hpp>

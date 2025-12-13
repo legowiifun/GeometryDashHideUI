@@ -10,3 +10,19 @@ void hideUIAPI::toggleUI() {
 	    ((hideUILayer*)layer)->hideNodes();
     }
 }
+void hideUIAPI::turnOffUI() {
+    // set isHidden to true
+	isHidden = true;
+    PlayLayer* layer = PlayLayer::get();
+    if (layer!=nullptr) {
+	    ((hideUILayer*)layer)->hideNodes();
+    }
+}
+void hideUIAPI::turnOnUI() {
+    // set isHidden to false
+	isHidden = false;
+    PlayLayer* layer = PlayLayer::get();
+    if (layer!=nullptr) {
+	    ((hideUILayer*)layer)->hideNodes();
+    }
+}
