@@ -101,14 +101,13 @@
 			return false;
 		}
 		// add the keybind event
-		this->template addEventListener<keybinds::InvokeBindFilter>([=](keybinds::InvokeBindEvent* event) {
-			if (event->isDown()) {
+		this->addEventListener(KeybindSettingPressedEvent(Mod::get(), "key"), [this](const Keybind& keybind, bool down, bool repeat) {
+			if (down) {
 				// switch the isHidden value
 				isHidden = !(isHidden);
 				hideNodes();
 			}
-			return ListenerResult::Propagate;
-			}, "hideUI"_spr);
+		});
 		return true;
 	}
 	// hook the startGame method

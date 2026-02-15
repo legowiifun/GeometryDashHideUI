@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Geode/Geode.hpp>
-#include <geode.custom-keybinds/include/Keybinds.hpp>
 #include <Geode/modify/CCNode.hpp>
 
 #include "../main.hpp"
