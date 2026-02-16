@@ -36,7 +36,7 @@
 			"type":"keybind",
 			"name": "Hide UI keybind",
 			"description": "Hide the user interface",
-			"default": "H"
+			"default": "Shift+H"
 		}
 	},
 	"links": {
