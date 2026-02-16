@@ -1,4 +1,6 @@
 #define GEODE_DEFINE_EVENT_EXPORTS
+#include "../main.hpp"
+#include "../hooks/hideUILayer.hpp"
 #include "hideUIAPI.hpp"
 
 void hideUIAPI::toggleUI() {
