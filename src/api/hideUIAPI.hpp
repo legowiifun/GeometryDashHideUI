@@ -16,6 +16,7 @@
 
 #include <Geode/Geode.hpp>
 #include <Geode/loader/Event.hpp>
+#include <Geode/loader/Dispatch.hpp>
 
 class HIDE_UI_API_DLL hideUIAPI {
     public:
