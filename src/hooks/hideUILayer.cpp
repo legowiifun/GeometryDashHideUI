@@ -64,6 +64,7 @@
 			} else if (current->getIsNested()==-1) {
 				hideNode(getChildByIDRecursive(current->getData()));
 			}
+			hideNode(geode::OverlayManager::get());
 			current=current->getNext();
 		}
 	}
@@ -93,6 +94,7 @@
 			} else if (current->getIsNested()==-1) {
 				markAsUI(getChildByIDRecursive(current->getData()));
 			}
+			markAsUI(geode::OverlayManager::get());
 			current=current->getNext();
 		}
 	}
