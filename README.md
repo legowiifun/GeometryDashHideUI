@@ -24,7 +24,7 @@ hideUIAPI::turnOffUI();
 hideUIAPI::turnOnUI();
 ```
 
-If you are a mod developer adding an object to the UI, and you want it to be automatically hidden, there are two approaches. First, you can put it in UILayer. This is automatically hidden. There is also an optional API you can use. 
+If you are a mod developer adding an object to the UI, and you want it to be automatically hidden, there are two approaches. First, you can put it in either UILayer or geode::OverlayManager. These are automatically hidden. There is also an optional API you can use. 
 First put 
 ```	
     "dependencies": {
