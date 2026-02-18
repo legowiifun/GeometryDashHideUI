@@ -29,11 +29,10 @@ void hideUIAPI::turnOnUI() {
 }
 
 
-geode::Result<void> hide_ui_events::addUIElementEvent(std::string nodeID, std::string location) {
-    log::debug("Recieving hide UI event");
+void hide_ui_events::addUIElementEvent(std::string nodeID, std::string location) {
     //prevent duplicates
 	if (head->strExists(nodeID)) {
-		return Ok();
+		return;
 	}
 	if (location=="PlayLayer") {
 		head->addToEnd(new LinkedListNode(nodeID, 0));
@@ -42,5 +41,4 @@ geode::Result<void> hide_ui_events::addUIElementEvent(std::string nodeID, std::s
 	} else if (location=="Sibling") {
 		head->addToEnd(new LinkedListNode(nodeID, 1));
 	}
-    return Ok();
 }

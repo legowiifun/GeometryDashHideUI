@@ -25,5 +25,5 @@ class HIDE_UI_API_DLL hideUIAPI {
         static void turnOnUI();
 };
 namespace hide_ui_events {
-    inline geode::Result<void> addUIElementEvent(std::string nodeID, std::string location) GEODE_EVENT_EXPORT(&addUIElementEvent, (nodeID, location));
+    inline void addUIElementEvent(std::string nodeID, std::string location) GEODE_EVENT_EXPORT_NORES(&addUIElementEvent, (nodeID, location));
 }
