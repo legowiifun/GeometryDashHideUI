@@ -5,8 +5,8 @@ This mod also provides an API to allow other mods to hide the UI. To use this, f
 ```	
     "dependencies": {
         "legowiifun.hide_ui": {
-			"version": ">=1.2.0",
-			"importance": "required"
+			"version": ">=1.3.0",
+			"required": true
 		}
 	}
 ```
@@ -24,17 +24,29 @@ hideUIAPI::turnOffUI();
 hideUIAPI::turnOnUI();
 ```
 
-If you are a mod developer adding an object to the UI, and you want it to be automatically hidden, there are two approaches. First, you can put it in UILayer. This is automatically hidden. There is also a dispatch-events based API you can use. At the top of your file, put 
+If you are a mod developer adding an object to the UI, and you want it to be automatically hidden, there are two approaches. First, you can put it in either UILayer or geode::OverlayManager. These are automatically hidden. There is also an optional API you can use. 
+First put 
+```	
+    "dependencies": {
+        "legowiifun.hide_ui": {
+			"version": ">=1.3.0",
+			"required": false
+		}
+	}
 ```
-#include <Geode/loader/Dispatch.hpp>
+in your mod.json. If you are already using the full dependency, this step is not needed. 
+
+Next, at the top of your file, put 
+```
+#include<legowiifun.hide_ui/src/api/hideUIAPI.hpp>
 ```
 Then, after creating your UI element, make sure it has a Node ID using this code
 ```
 node->setID("MyNode"_spr);
 ```
-Finally, use the dispatch event to add it to the list. 
+Finally, use the API to add it to the list. 
 ```
-DispatchEvent<std::string, std::string>("legowiifun.hide_ui/addUI", node->getID(), "PlayLayer").post();
+hide_ui_events::addUIElementEvent(node->getID(), "PlayLayer");
 ```
 What you put in the second parameter depends on where your node is. If it is a direct child of PlayLayer, put "PlayLayer". If it is a sibling, or a child of a sibling of PlayLayer, put "Sibling". If it is nested within a child of PlayLayer, put "Nested".
 

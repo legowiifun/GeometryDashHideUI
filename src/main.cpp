@@ -1,45 +1,5 @@
 #include "main.hpp"
 
-//dispatch events
-void addUIEvent(std::string nodeID, std::string location) {
-	//prevent duplicates
-	if (head->strExists(nodeID)) {
-		return;
-	}
-	if (location=="PlayLayer") {
-		head->addToEnd(new LinkedListNode(nodeID, 0));
-	} else if (location=="Nested") {
-		head->addToEnd(new LinkedListNode(nodeID, -1));
-	} else if (location=="Sibling") {
-		head->addToEnd(new LinkedListNode(nodeID, 1));
-	}
-}
-
-$execute{
-	// register keybind
-	/*keybinds::BindManager::get()->registerBindable({
-		"hideUI"_spr,
-		"Hide the user interface",
-		"",
-		{keybinds::Keybind::create(KEY_H, keybinds::Modifier::Shift)},
-		"Play/UI"
-	});*/
-	(void)[&]()->Result<> {
-		GEODE_UNWRAP(BindManagerV2::registerBindable(GEODE_UNWRAP(BindableActionV2::create(
-			"hideUI"_spr,
-			"Hide the user interface",
-			"",
-			{ GEODE_UNWRAP(KeybindV2::create(KEY_H, ModifierV2::Shift)) },
-			GEODE_UNWRAP(CategoryV2::create("Play/UI"))
-		))));
-	}();
-	
-	// dispatch event
-	new EventListener(+[](std::string nodeID, std::string location) {
-		addUIEvent(nodeID, location);
-		return ListenerResult::Stop;
-	}, ToFilter<EventAddUI>("legowiifun.hide_ui/addUI"));
-}
 $on_mod(Loaded) {
 	// globed
 	head=new LinkedListNode("dankmeme.globed2/game-overlay", 0);

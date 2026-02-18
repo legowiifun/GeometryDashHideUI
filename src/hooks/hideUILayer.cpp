@@ -64,6 +64,7 @@
 			} else if (current->getIsNested()==-1) {
 				hideNode(getChildByIDRecursive(current->getData()));
 			}
+			hideNode(geode::OverlayManager::get());
 			current=current->getNext();
 		}
 	}
@@ -93,6 +94,7 @@
 			} else if (current->getIsNested()==-1) {
 				markAsUI(getChildByIDRecursive(current->getData()));
 			}
+			markAsUI(geode::OverlayManager::get());
 			current=current->getNext();
 		}
 	}
@@ -101,14 +103,13 @@
 			return false;
 		}
 		// add the keybind event
-		this->template addEventListener<keybinds::InvokeBindFilter>([=](keybinds::InvokeBindEvent* event) {
-			if (event->isDown()) {
+		this->addEventListener(KeybindSettingPressedEvent(Mod::get(), "key"), [this](const Keybind& keybind, bool down, bool repeat) {
+			if (down) {
 				// switch the isHidden value
 				isHidden = !(isHidden);
 				hideNodes();
 			}
-			return ListenerResult::Propagate;
-			}, "hideUI"_spr);
+		});
 		return true;
 	}
 	// hook the startGame method

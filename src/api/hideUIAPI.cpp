@@ -1,6 +1,7 @@
-#include "hideUIAPI.hpp"
+#define GEODE_DEFINE_EVENT_EXPORTS
 #include "../main.hpp"
 #include "../hooks/hideUILayer.hpp"
+#include "hideUIAPI.hpp"
 
 void hideUIAPI::toggleUI() {
     // switch the isHidden value
@@ -25,4 +26,21 @@ void hideUIAPI::turnOnUI() {
     if (layer!=nullptr) {
 	    ((hideUILayer*)layer)->hideNodes();
     }
+}
+
+
+geode::Result<void> hide_ui_events::addUIElementEvent(std::string nodeID, std::string location) {
+    log::debug("Recieving hide UI event");
+    //prevent duplicates
+	if (head->strExists(nodeID)) {
+		return Ok();
+	}
+	if (location=="PlayLayer") {
+		head->addToEnd(new LinkedListNode(nodeID, 0));
+	} else if (location=="Nested") {
+		head->addToEnd(new LinkedListNode(nodeID, -1));
+	} else if (location=="Sibling") {
+		head->addToEnd(new LinkedListNode(nodeID, 1));
+	}
+    return Ok();
 }
