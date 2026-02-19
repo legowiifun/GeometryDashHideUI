@@ -103,7 +103,7 @@
 			return false;
 		}
 		// add the keybind event
-		this->addEventListener(KeybindSettingPressedEvent(Mod::get(), "key"), [this](const Keybind& keybind, bool down, bool repeat) {
+		this->addEventListener(KeybindSettingPressedEvent(Mod::get(), "key"), [this](const Keybind& keybind, bool down, bool repeat, double) {
 			if (down) {
 				// switch the isHidden value
 				isHidden = !(isHidden);
