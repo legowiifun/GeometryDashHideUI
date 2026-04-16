@@ -1,4 +1,8 @@
 # HideUI
+![Mod Version](https://api.geode-sdk.org/v1/mods/legowiifun.hide_ui/status_badge?stat=version)
+![Downloads](https://api.geode-sdk.org/v1/mods/legowiifun.hide_ui/status_badge?stat=downloads)
+![GD Version](https://api.geode-sdk.org/v1/mods/legowiifun.hide_ui/status_badge?stat=gd_version)
+![Geode Version](https://api.geode-sdk.org/v1/mods/legowiifun.hide_ui/status_badge?stat=geode_version)
 Hides most UI labels on a keypress. If there is one that is not hidden, download https://geode-sdk.org/mods/geode.devtools, then press F11 while in a level (it also works while paused), and find where the UI element is. It will likely be somewhere under PlayLayer. Once you think you found it, click on attributes, check the visible checkbox, and see if it disappears. If it does, then share that on the github for this mod. 
 
 This mod also provides an API to allow other mods to hide the UI. To use this, first put 
