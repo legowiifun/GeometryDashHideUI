@@ -22,7 +22,7 @@ class $modify(hideUILayer, PlayLayer) {
 	void markAsUI(CCNode * n);
 	// mark multiple nodes as UI elements
 	void markNodesAsUI();
-	bool init(GJGameLevel * level, bool useReplay, bool dontCreateObjects);
+	bool init(GJGameLevel * level, bool dontCreateObjects);
 	// hook the startGame method
 	void startGame();
 };

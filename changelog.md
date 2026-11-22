@@ -1,3 +1,5 @@
+# 1.3.1
+- 2.2091 support!
 # 1.3.0
 - Updates to the API
 - Custom Keybinds is no longer required

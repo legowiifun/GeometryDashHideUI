@@ -40,5 +40,5 @@ $on_mod(Loaded) {
 	head->addToEnd(new LinkedListNode("percentage-label", 0));
 	head->addToEnd(new LinkedListNode("UILayer", 0));
 	head->addToEnd(new LinkedListNode("debug-text", 0));
-	head->addToEnd(new LinkedListNode("time-label", 0));	
+	head->addToEnd(new LinkedListNode("time-label", 0));
 }

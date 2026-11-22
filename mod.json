@@ -1,18 +1,18 @@
 {
-	"geode": "5.0.0-beta.3",
+	"geode": "6.0.0-beta.1",
 	"gd": {
-		"win": "2.2081",
-		"mac": "2.2081",
-		"android": "2.2081",
-		"ios": "2.2081"
+		"win": "2.2091",
+		"mac": "2.2091",
+		"android": "2.2091",
+		"ios": "2.2091"
 	},
 	"id": "legowiifun.hide_ui",
 	"name": "Hide UI",
-	"version": "v1.3.0",
+	"version": "v1.3.1",
 	"developer": "legowiifun",
 	"description": "Hides the game UI on a keypress.",
 	"dependencies": {
-  		"geode.node-ids": ">=v1.22.0"
+  		"geode.node-ids": ">=v1.24.0-beta.1"
  	},
 	"tags": [
 		"gameplay",
@@ -23,7 +23,8 @@
 	"api": {
 		"include": [
 			"src/api/hideUIAPI.hpp"
-		]
+		],
+		"include_strip_prefix": "src/"
 	},
 	"settings": {
 		"auto-hide": {
@@ -37,7 +38,7 @@
 			"name": "Hide UI keybind",
 			"description": "Hide the user interface",
 			"default": "Shift+H",
-			"category": "universal"
+			"category": "gameplay"
 		}
 	},
 	"links": {

@@ -15,8 +15,7 @@
 #define MY_MOD_ID "legowiifun.hide_ui"
 
 #include <Geode/Geode.hpp>
-#include <Geode/loader/Event.hpp>
-#include <Geode/loader/Dispatch.hpp>
+#include <Geode/loader/EventExport.hpp>
 
 class HIDE_UI_API_DLL hideUIAPI {
     public:
@@ -25,5 +24,6 @@ class HIDE_UI_API_DLL hideUIAPI {
         static void turnOnUI();
 };
 namespace hide_ui_events {
-    inline void addUIElementEvent(std::string nodeID, std::string location) GEODE_EVENT_EXPORT_NORES(&addUIElementEvent, (nodeID, location));
+    GEODE_EVENT_EXPORT(void,addUIElementEvent,(std::string nodeID, std::string location), (nodeID, location));
+    //inline void addUIElementEvent(std::string nodeID, std::string location) GEODE_EVENT_EXPORT_NORES(&addUIElementEvent, (nodeID, location));
 }

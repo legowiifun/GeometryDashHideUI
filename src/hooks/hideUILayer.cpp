@@ -98,8 +98,8 @@
 			current=current->getNext();
 		}
 	}
-	bool hideUILayer::init(GJGameLevel * level, bool useReplay, bool dontCreateObjects) {
-		if (!PlayLayer::init(level, useReplay, dontCreateObjects)) {
+	bool hideUILayer::init(GJGameLevel * level, bool dontCreateObjects) {
+		if (!PlayLayer::init(level, dontCreateObjects)) {
 			return false;
 		}
 		// add the keybind event
