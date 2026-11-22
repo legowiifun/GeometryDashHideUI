@@ -30,6 +30,7 @@ void hideUIAPI::turnOnUI() {
 
 
 void hide_ui_events::addUIElementEvent(std::string nodeID, std::string location) {
+	geode::log::debug("Add UI event!: Adding UI {}",nodeID);
     //prevent duplicates
 	if (head->strExists(nodeID)) {
 		return;
@@ -41,4 +42,6 @@ void hide_ui_events::addUIElementEvent(std::string nodeID, std::string location)
 	} else if (location=="Sibling") {
 		head->addToEnd(new LinkedListNode(nodeID, 1));
 	}
+	geode::log::debug("Finished Add UI event!");
+	return;
 }
