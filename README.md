@@ -16,7 +16,7 @@ This mod also provides an API to allow other mods to hide the UI. To use this, f
 ```
 in mod.json. Then, at the top of your code, put 
 ```
-#include<legowiifun.hide_ui/src/api/hideUIAPI.hpp>
+#include<legowiifun.hide_ui/api/hideUIAPI.hpp>
 ```
 Finally, in the method itself, where you want to use the API, put
 ```
@@ -42,7 +42,7 @@ in your mod.json. If you are already using the full dependency, this step is not
 
 Next, at the top of your file, put 
 ```
-#include<legowiifun.hide_ui/src/api/hideUIAPI.hpp>
+#include<legowiifun.hide_ui/api/hideUIAPI.hpp>
 ```
 Then, after creating your UI element, make sure it has a Node ID using this code
 ```
